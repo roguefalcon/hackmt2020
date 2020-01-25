@@ -7,3 +7,7 @@ apt_dev.cert.key
 apt_dev.ssl.csr
 nohup.out
 privkey.pem
+__pycache__/
+.DS_Store
+.idea/
+.vscode/
