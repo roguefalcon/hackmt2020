@@ -8,15 +8,15 @@ def index():
 
 @app.route('/organizer')
 def organizer():
-    return render_template('organizer.html')
+    return render_template('organizer/organizer.html')
 
 @app.route('/donar')
 def doner():
-    return render_template('donar.html')
+    return render_template('donar/donar.html')
 
 @app.route('/children')
 def children():
-    return render_template('children.html')
+    return render_template('children/children.html')
 
 @app.route('/contact')
 def contact():
