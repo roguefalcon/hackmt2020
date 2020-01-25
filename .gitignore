@@ -1,0 +1,9 @@
+*.pyc
+*.swp
+files
+test
+apt_dev.cert.cert
+apt_dev.cert.key
+apt_dev.ssl.csr
+nohup.out
+privkey.pem
