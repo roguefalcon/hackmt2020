@@ -19,3 +19,9 @@ Run the following commands:
 ```Bash
 `pip3 install -r requirements.txt`
 `python3 app.py`
+
+## Database
+
+Please run below command to set up database:
+`python3 load_db.py` if you have error, please run this line again
+`python3 rea_db.py`
