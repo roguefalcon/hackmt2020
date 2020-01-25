@@ -22,12 +22,6 @@ def children():
 def contact():
     return render_template('contact.html')
 
-# if __name__ == "__main__":
-#     print(" Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)")
-#     app.run(debug=True)
-
-
-
 from application.APIs.children import children
 from application.APIs.donar import donar
 from application.APIs.organizer import organizer
