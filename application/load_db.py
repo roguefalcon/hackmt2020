@@ -16,13 +16,23 @@ conn = sqlite3.connect('sql.db')
 c = conn.cursor()
 
 # Make the tables =============================================================
-c.execute('''CREATE TABLE IF NOT EXISTS favorite_color
-             (name text, color text)''')
+#Children DB
+c.execute('''CREATE TABLE IF NOT EXISTS children
+             (id integer primary key, email text, name text, age  integer, about_me text, address text, cloth_size text, sex text, gender text, pant_size text, shoes_size text, fav_color text)''')
 
-c.execute('''CREATE TABLE IF NOT EXISTS users
-             (username text, password text)''')
+#Children_items
+c.execute('''CREATE TABLE IF NOT EXISTS children_items
+            (id integer primary key, name text, amount integer,children_id integer not null, foreign key (children_id) references children(id))''')
+
 
 # Let's load some data
-c.execute('''INSERT INTO users VALUES (?, ?)''',
-          ('asdf', bcrypt.hashpw(b'asdf', bcrypt.gensalt())))
+#c.execute('''INSERT INTO users VALUES (?, ?)''',
+#         ('asdf', bcrypt.hashpw(b'asdf', bcrypt.gensalt())))
+c.execute('''INSERT INTO children (email, name, age, about_me, address, cloth_size, sex, gender, pant_size, shoes_size, fav_color) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''',
+          ('example@example.ea', 'NAME', 10, 'ABOUT ME INFORMATION', 'ADRESS LINE', 'SMALL', 'Male', 'M', 'S', '5', 'YELLOW'))
+
+c.executemany('''INSERT INTO children_items (name, amount, children_id) VALUES(?, ?, ?)''',
+          [('LEGO', 20, 1),('GIFT', 50, 1),('CANDY', 5, 1)])
+
+
 conn.commit()
