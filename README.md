@@ -1,13 +1,23 @@
-https://www.youtube.com/watch?v=iwhuPxJ0dig This vidoe has good explanation of flask
 
-## ToDo
-on termianl go to the location of project. install below package
-* pip install flask
+# Charity Toy Tracker 9000
+Toys for Tots, Angle Tree, Holiday Heros, are all charities that help underprivileged kids have a
+great Christmas with Toys and other more practical items (clothes, shoes, coats, etc.).
 
-After run below command line to run appliation
-`export FLASK_APP=app.py`
+The software available to large scale organizations is often too expensive to purchase or much
+too difficult to administer and deploy by the “small” charities. If a group wants to help less than
+1,000 children. There are some older legacy systems that require physical paper forms (gasp).
 
-`python3 -m flask run` This command to run application
+Our software will be basic but have a few key features to enable smaller charities to assist in
+these functions.
 
-after adding below line to `app.py` file you can run `pythong3 app.py` in commandline
-`if __name__ == "__main__":`
+## Technologies
+This is a Python Flask App that uses a bootstrap frontend and using Vue javascript framework.
+We are using Sqlite as the backend.
+
+## Installation
+
+Run the following commands:
+```Bash
+`pip3 install -r requirements.txt`
+`pythong3 app.py`
+```
