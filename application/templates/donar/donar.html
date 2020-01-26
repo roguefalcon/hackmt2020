@@ -1,10 +1,59 @@
 {% extends "layout.html" %}
-{% block title %}About Page{% endblock %}
+{% block title %}Donor{% endblock %}
 {% block content %}
  
 <div class="row">
   <div class="col-lg-8 col-md-10 mx-auto">
-    <h1> This Is Donar Page </h1>
+    <h3><u>Register Donor Page</u></h3>
+      <form name="sentMessage" id="donorForm" novalidate>
+        <div class="control-group">
+	  <div class="form-group floating-label-form-group controls">
+	    <label>Email</label>
+	    <input type="text" class="form-control" placeholder="Email" id="email" required data-validation-required-message="Please enter your email.">
+	    <p class="help-block text-danger"></p>
+	  </div>
+	</div>
+	<div class="control-group">
+	  <div class="form-group floating-label-form-group controls">
+	    <label>Username</label>
+	    <input type="text" class="form-control" placeholder="Username" id="username" required data-validation-required-message="Please enter your username.">
+	    <p class="help-block text-danger"</p>
+	  </div>
+	</div>
+	<div class="control-group">
+	  <div class="form-group floating-label-form-group controls">
+	    <label>Password</label>
+	    <input type="password" class="form-control" placeholder="Password" id="password" required data-validation-required-message="Please enter password">
+	    <p class="help-block text-danger"></p>
+	  </div>
+	</div> 
+	<div class="control-group">
+	  <div class="form-group floating-label-form-group controls">
+	    <label> Confirm  Password </label>
+	    <input type="password" class="form-control" placeholder="Confirm Password" id="confirm_password" required data-validation-required-message="Please re-enter password">
+	    <p class="help-block text-danger"></p>
+	  </div>
+	</div>
+	<div class="control-group">
+	  <div class="form-group floating-label-form-group controls">
+	    <label>Phone Number</label>
+	    <input type="text" class="form-control" placeholder="Phone" id="phone-number" required data-validation-required-message="Please enter phone number">
+	    <p class="help-block text-danger"></p>
+	  </div>
+	</div>
+	<div class="control-group">
+	  <div class="form-group floating-label-form-group controls">
+	    <label>Name</label>
+	    <input type="text" class="form-control" placeholder="Name" id="name" required data-validation-required-message="Please enter your name.">
+	    <p class="help-block text-danger"></p>
+	  </div>
+	  <br>
+	  <div id="success"></div>
+	  <div class="form-group">
+	    <button type="submit" class="btn btn-primary" id="registerButton">Register</button>
+	  </div>
+	</div>
+      </form>
   </div>
 </div>
-  {% endblock %}
+{% endblock %}
