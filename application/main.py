@@ -10,6 +10,14 @@ def index():
 def organization():
     return render_template('organization/organization.html')
 
+@app.route('/organization/children')
+def organizationchildren():
+    return render_template('organization/organizationchildren.html')
+
+@app.route('/organization/children')
+def organizationdonor():
+    return render_template('organization/organizationdonor.html')
+
 @app.route('/donar')
 def doner():
     return render_template('donar/donar.html')
