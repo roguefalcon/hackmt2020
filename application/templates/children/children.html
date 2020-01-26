@@ -73,9 +73,9 @@
 			<div class="control-group">
 				<div class="form-group floating-label-form-group controls">
 					<label>Wishlist</label>
-					<input type="text" class="form-control" placeholder="Item 1" id="child_item_1" required data-validation-required-message="Please put at least one item on your wishlist." v-model="child.items[0]">
-					<input type="text" class="form-control" placeholder="Item 2" id="child_item_2" v-model="child.items[1]">
-					<input type="text" class="form-control" placeholder="Item 3" id="child_item_3" v-model="child.items[2]">
+					<input type="text" class="form-control" placeholder="Item 1" id="child_item_1" required data-validation-required-message="Please put at least one item on your wishlist." v-model="child.items[0].name">
+					<input type="text" class="form-control" placeholder="Item 2" id="child_item_2" v-model="child.items[1].name">
+					<input type="text" class="form-control" placeholder="Item 3" id="child_item_3" v-model="child.items[2].name">
 					<p class="help-block text-danger"></p>
 				</div>
 			</div>
@@ -135,7 +135,11 @@
 					pant_size: "",
 					shoes_size: "",
 					fav_color: "",
-					items: ["","",""]
+					items: [
+						{id:0, name:""},
+						{id:0, name:""},
+						{id:0, name:""}
+					]
 				}
 
         	},
@@ -150,10 +154,9 @@
             	},
 	    	save: function(){
 				if(this.child.id == 0){
-					console.log(this.child)
 					this.$http.post('/api/1.0/children', this.child).then(response => {
 						//Redirect to welcome page
-					} error => {
+					}, error => {
 						console.log(error);
 					})
 				}

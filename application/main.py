@@ -14,6 +14,10 @@ def organizer():
 def doner():
     return render_template('donar/donar.html')
 
+@app.route('/welcome_child')
+def welcome():
+    return render_template('children/welcome.html')
+
 @app.route('/children')
 def children():
     return render_template('children/children.html')
