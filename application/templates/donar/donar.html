@@ -5,46 +5,39 @@
 <div class="row">
   <div class="col-lg-8 col-md-10 mx-auto">
     <h3><u>Register Donor Page</u></h3>
-      <form name="sentMessage" id="donorForm" novalidate>
+      <form name="sentMessage" id="donorForm" novalidate @submit.prevent="send">
         <div class="control-group">
 	  <div class="form-group floating-label-form-group controls">
 	    <label>Email</label>
-	    <input type="text" class="form-control" placeholder="Email" id="email" required data-validation-required-message="Please enter your email.">
+	    <input type="text" class="form-control" placeholder="Email" id="email" required data-validation-required-message="Please enter your email." v-model="donar.email">
 	    <p class="help-block text-danger"></p>
 	  </div>
 	</div>
 	<div class="control-group">
 	  <div class="form-group floating-label-form-group controls">
 	    <label>Username</label>
-	    <input type="text" class="form-control" placeholder="Username" id="username" required data-validation-required-message="Please enter your username.">
-	    <p class="help-block text-danger"</p>
+	    <input type="text" class="form-control" placeholder="Username" id="username" required data-validation-required-message="Please enter your username." v-model="donar.username">
+		<p class="help-block text-danger"></p>
 	  </div>
 	</div>
 	<div class="control-group">
 	  <div class="form-group floating-label-form-group controls">
 	    <label>Password</label>
-	    <input type="password" class="form-control" placeholder="Password" id="password" required data-validation-required-message="Please enter password">
+	    <input type="password" class="form-control" placeholder="Password" id="password" required data-validation-required-message="Please enter password" v-model="donar.password">
 	    <p class="help-block text-danger"></p>
 	  </div>
 	</div> 
 	<div class="control-group">
 	  <div class="form-group floating-label-form-group controls">
-	    <label> Confirm  Password </label>
-	    <input type="password" class="form-control" placeholder="Confirm Password" id="confirm_password" required data-validation-required-message="Please re-enter password">
-	    <p class="help-block text-danger"></p>
-	  </div>
-	</div>
-	<div class="control-group">
-	  <div class="form-group floating-label-form-group controls">
 	    <label>Phone Number</label>
-	    <input type="text" class="form-control" placeholder="Phone" id="phone-number" required data-validation-required-message="Please enter phone number">
+	    <input type="text" class="form-control" placeholder="Phone" id="phone-number" required data-validation-required-message="Please enter phone number" v-model="donar.phone">
 	    <p class="help-block text-danger"></p>
 	  </div>
 	</div>
 	<div class="control-group">
 	  <div class="form-group floating-label-form-group controls">
 	    <label>Name</label>
-	    <input type="text" class="form-control" placeholder="Name" id="name" required data-validation-required-message="Please enter your name.">
+	    <input type="text" class="form-control" placeholder="Name" id="name" required data-validation-required-message="Please enter your name." v-model="donar.name">
 	    <p class="help-block text-danger"></p>
 	  </div>
 	  <br>
@@ -56,4 +49,30 @@
       </form>
   </div>
 </div>
+{% endblock %}
+
+{% block script %}
+<script>
+	var app = new Vue({
+			el: "#donorForm",
+			data: {
+					donar: {
+							email: "",
+							username: "",
+							password: "",
+							phone: "",
+							name: ""
+						}
+				},
+			methods: {
+					send: function(){
+							this.$http.post('/api/1.0/donar', this.donar).then(response => {
+									window.location.href = "/donor/" + response.body.donar_id + "/child/"
+							}, error => {
+									console.log(error);
+							})
+					}
+				}
+	});
+</script>
 {% endblock %}
