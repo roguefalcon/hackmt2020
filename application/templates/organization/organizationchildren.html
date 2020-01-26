@@ -2,31 +2,62 @@
 {% block title %}Organization Children Page{% endblock %}
 {% block content %}
  
-<div class="row">
-  <div class="col-lg-8 col-md-10 mx-auto">
-    <h1> Organization Info </h1>
-  </div>
-</div>
-<div class="row" id="childrenInfo">
-  
-  <div class="col-sm-6">
-    <img :src="childImage" :alt="child.name" width="250px">
-    <div class="row">[[child.name]] ([[child.age]][[child.sex.charAt(0)]])</div>
-    <div class="row">Email: [[child.email]]</div>
-    <div class="row">Address: [[child.address]]</div>
-    <div class="row">Shirt Size: [[child.cloth_size]]</div>
-    <div class="row">Pant Size: [[child.pant_size]]</div>
-    <div class="row">Shoe Size: [[child.shoes_size]]</div>
-  </div>
-
-  <div class="col-sm-6">
-    <div class="row" v-for="gift in child.items">
-        [[gift.name]]: $[[gift.amount]]
+<div id="childrenInfo">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <h1> Child Info </h1>
     </div>
-    <div class="row">Goal Price: $[[goal_price]]</div>
-    <div class="row">Total Price: $[[total_price]]</div>
   </div>
-
+  <div class="row" style="height:500px">
+    <div class="col-sm-4">
+      <img :src="childImage" :alt="child.name" style="width:300px">
+    </div>
+    <div class="col-sm-3">
+      <div class="row">[[child.name]] ([[child.age]][[child.sex.charAt(0)]])</div>
+      <div class="row">Email: [[child.email]]</div>
+      <div class="row">Address: [[child.address]]</div>
+      <div class="row">Shirt Size: [[child.cloth_size]]</div>
+      <div class="row">Pant Size: [[child.pant_size]]</div>
+      <div class="row">Shoe Size: [[child.shoes_size]]</div>
+      <div class="row">About Me: [[child.about_me]]</div>
+    </div>
+    <div class="col-sm-5">
+      <div class="control-group">
+        <div class="form-group floating-label-form-group controls">
+          <div class="row">
+            <div class="col-sm-6">
+              Gift Name
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-5">
+              Price
+            </div>
+          </div>
+          <div class="row" v-for="gift in child.items">
+            <div class="col-sm-6">
+              <input type="text" class="form-control" placeholder="Name" id="price" required data-validation-required-message="Enter gift name." v-model="gift.name">
+            </div>
+            <div class="col-sm-1">$</div>
+            <div class="col-sm-5">
+                <input type="number" class="form-control" placeholder="$" id="price" required data-validation-required-message="Enter dollar amount." v-model="gift.amount">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="row">Goal Price: $[[goal_price]]</div>
+          <div class="row">Total Price: $[[total_price]]</div>
+        </div>
+        <div class="col-sm-4">
+          <button type="button" class="btn btn-primary" v-on:click="saveGifts">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    
+  </div>
 </div> 
 {% endblock %}
 
@@ -39,23 +70,21 @@
     delimiters: ['[[', ']]'],
     data: {
       child: {
-        id: 1,
-        email: "email@address",
-        name: "Joe Bob",
-        phone: "123",
-        age: 7,
-        about_me: "I'm Cool",
-        address: "78 road",
-        cloth_size: "XXXXXXXL",
-        sex: "M",
-        gender: "M",
-        pant_size: "28",
-        shoes_size: "7",
-        fav_color: "Orange",
+        id: 0,
+        email: "",
+        name: "",
+        phone: "",
+        age: 0,
+        about_me: "",
+        address: "",
+        cloth_size: "",
+        sex: "",
+        gender: "",
+        pant_size: "",
+        shoes_size: "",
+        fav_color: "",
         items: [
-              {id:1, name:"bike", amount: 10},
-              {id:2, name:"yoyo", amount: 11},
-              {id:3, name:"doggie", amount: 12}
+              {id:0, name:"", amount: 0}
             ]
       },
       goal_price: 102
@@ -65,6 +94,13 @@
           this.$http.get('/api/1.0/children/' + childId).then(response => {
               console.log(response.body);
               this.child =  response.body;
+          }, error => {
+              console.log(error);
+          });
+        },
+        saveGifts: function(){
+          this.$http.put('/api/1.0/children/items', this.child).then(response => {
+              console.log(response.body);
           }, error => {
               console.log(error);
           });
@@ -84,7 +120,7 @@
 
         let sum = 0;
         this.child.items.forEach(gift => {
-          sum += gift.amount;
+          sum += +gift.amount;
         });
         return sum;
       }
