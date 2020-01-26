@@ -10,6 +10,7 @@
 <div class="row" id="childrenInfo">
   
   <div class="col-sm-6">
+    <img :src="childImage" :alt="child.name" width="250px">
     <div class="row">[[child.name]] ([[child.age]][[child.sex]])</div>
     <div class="row">Email: [[child.email]]</div>
     <div class="row">Address: [[child.address]]</div>
@@ -35,7 +36,7 @@
     delimiters: ['[[', ']]'],
     data: {
       child: {
-        id: 0,
+        id: 1,
         email: "email@address",
         name: "Joe Bob",
         phone: "123",
@@ -64,6 +65,17 @@
                 console.log(error);
             });
         }
+    },
+    computed: {
+      childImage () {
+        if (!this.child.id) {
+          return
+        }
+
+        const fileName = this.child.id;
+
+        return "../../static/img/kids/" + fileName + ".jpg" // the module request
+      }
     }
   });
 </script>
