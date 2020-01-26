@@ -1,19 +1,63 @@
 {% extends "layout.html" %}
 {% block title %}Organization Page{% endblock %}
 {% block content %}
- 
-<div class="row">
-  <div class="col-lg-8 col-md-10 mx-auto">
-    <h1> Organization Info </h1>
-  </div>
+
+<div id="app">
+	<div class="row">
+  		<div class="col-lg-8 col-md-10 mx-auto">
+				<strong><u><center style="font-size: -webkit-xxx-large;"> Organization Info </center></u></strong>
+			<br>
+  		</div>
+	</div>
+	<div class="col-md-12">
+		<table class="table">
+		<thead>
+			<tr>
+				<th name="col">Name</th>
+				<th name="col">Age</th>
+				<th name="col">Sex</th>
+				<th name="col">Remove?</th>
+			</tr>
+		</thead>
+		<tbody>
+			<h2> Registered Children </h2>
+			//v-for child in children
+			<tr>
+				<th scope="row">child.name</th>
+				<td>child.age</td>
+				<td>child.sex</td>
+				<td>child.id</td>
+			</tr>
+		</tbody>
+		</table>
+	</div>
+	<div class="col-md-12">
+		<table class="table">
+		<thead>
+			<tr>
+				<th name="col">Name</th>
+				<th name="col">Email</th>
+				<th name="col">Username</th>
+				<th name="col">Password</th>
+				<th name="col">Phone Number</th>
+				<th name="col">Remove?</th>
+			</tr>
+		</thead>
+		<tbody>
+			<h2> Registered Donors </h2>
+			//v-for donor in donors
+			<tr>
+				<th scope="row">donor.name</th>
+				<td>donor.email</td>
+				<td>donor.username</td>
+				<td>donor.password</td>
+				<td>donor.phone</td>
+				<td>donor.id</td>
+			</tr>
+		</tbody>
+		</table>
+	</div>
 </div>
-<div class="row" id="childrenList">
-    <a class="nav-link" href="/organization/children?childId=1">child 1</a>
-</div> 
-<div class="row" id="donorList">
-
-</div> 
-
 {% endblock %}
 
 {% block script %}
@@ -21,15 +65,34 @@
   var childId = new URL(location.href).searchParams.get('childId')
 
   var app = new Vue({
-    el: "#childrenList",
-    delimiters: ['[[', ']]']
+    el: "#app",
+    delimiters: ['[[', ']]'],
+	data: {
+		children: [],
+		donors: []
+	},
+	methods: {
+		fetchData: function(){
+				this.$http.get('/api/1.0/children').then(response => {
+					this.children = response.body
+					console.log(this.children)
+				}, error => {
+					console.log(error);
+				})
+
+				this.$http.get('api/1.0/donar').then(response => {
+					this.donors = response.body
+					console.log(this.donors)
+				}, error => {
+					console.log(error);
+				})
+		}
+	},
+	mounted: function(){
+			this.fetchData();
+	}
   })
 
-  var app = new Vue({
-    el: "#donorList",
-    delimiters: ['[[', ']]']
-  })
-  
 </script>
 {% endblock %}
 
