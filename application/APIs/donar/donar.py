@@ -32,6 +32,14 @@ def donar_details(id):
     data["children_info"] = all_data
     return jsonify(data)
 
+@main.app.route('/api/1.0/donar', methods=["GET"])
+def donar_get():
+
+    # Get info on all donors
+    g.c.execute('''SELECT * FROM donor''')
+    data = g.c.fetchall()
+    return jsonify(data)
+
 
 #Insert single donor record
 @main.app.route('/api/1.0/donar', methods=['post'])

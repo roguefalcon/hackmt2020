@@ -27,7 +27,9 @@
 				</th>
 				<td>[[child.age]]</td>
 				<td>[[child.sex]]</td>
-				<td>[[child.id]]</td>
+				<td>
+					<a class="btn btn-secondary" :href="child.removeLink" role="button">X</a>
+				</td>
 			</tr>
 		</tbody>
 		</table>
@@ -50,7 +52,9 @@
 				<td>[[donor.email]]</td>
 				<td>[[donor.username]]</td>
 				<td>[[donor.phone]]</td>
-				<td>[[donor.id]]</td>
+				<td>
+					<a class="btn btn-secondary" :href="donor.removeLink" role="button">X</a>
+				</td>
 			</tr>
 		</tbody>
 		</table>
