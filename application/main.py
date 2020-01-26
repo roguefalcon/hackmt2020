@@ -18,6 +18,10 @@ def doner():
 def welcome():
     return render_template('children/welcome.html')
 
+@app.route('/donar/<id>/children')
+def doner_children(id):
+    return render_template('donar/childrenPhoto.html')
+
 @app.route('/children')
 def children():
     return render_template('children/children.html')
