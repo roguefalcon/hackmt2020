@@ -3,70 +3,175 @@
 {% block content %}
  
 <div class="row">
-  <div class="col-lg-8 col-md-10 mx-auto">
-    <h1> Organization Info </h1>
-  </div>
+	<div class="col-lg-8 col-md-10 mx-auto">
+		<h3><u>Please fill out the form below</u></h3>
+		<form name="sentMessage" id="childrenForm" novalidate @submit.prevent="save">
+			<div class="control-group">
+	  			<div class="form-group floating-label-form-group controls">
+	    			<label>Name</label>
+	    			<input type="text" class="form-control" placeholder="Full Name" id="name" required data-validation-required-message="Please enter your name." v-model="child.name">
+	    			<p class="help-block text-danger"></p>
+	  			</div>
+			</div>
+			<div class="control-group">
+ 	 			<div class="form-group floating-label-form-group controls">
+   	 				<label>Email</label>
+	 				<input type="email" class="form-control" placeholder="Email Address" id="email" required data-validation-required-message="Please enter your email address." v-model="child.email">
+	 				<p class="help-block text-danger"></p>
+  				</div>
+			</div>
+			<div class="control-group">
+				<div class="form-group floating-label-form-group controls">
+					<label>Phone</label>
+					<input type="tel" class="form-control" placeholder="Phone Number" id="phone" required data-validation-required-message="Please enter your phone number." v-model="child.phone">
+					<p class="help-block text-danger"></p>
+				</div>
+			</div>
+			<div class="control-group">
+	  			<div class="form-group floating-label-form-group controls">
+					<label>Gender</label>
+					<input type="gender" class="form-control" placeholder="Preferred Gender" id="gender" required data-validation-required-message="Please enter your preferred gender." v-model="child.gender">
+					<p class="help-block text-danger"></p>
+				</div>
+			</div>
+			<div class="control-group">
+	  			<div class="form-group floating-label-form-group controls">
+					<label>Sex</label>
+	    			<input type="radio" name="sex" value="Male" v-model="child.sex"> Male
+	    			<input type="radio" name="sex" value="Female" v-model="child.sex"> Female
+				</div>
+			</div>
+			<div class="control-group">
+	  			<div class="form-group floating-label-form-group controls">
+					<label>Age</label>
+					<input type="integer" class="form-control" placeholder="How old are you?" id="age" required data-validation-required-message="Please enter your age." v-model="child.age">
+					<p class="help-block text-danger"></p>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="form-group floating-label-form-group controls">
+					<label>Address</label>
+					<input type="address" class="form-control" placeholder="Where do you live?" id="address" required data-validation-required-message="Please enter your address." v-model="child.address">
+					<p class="help-block text-danger"></p>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="form-group floating-label-form-group controls">
+	    			<label>About Me</label>
+	    			<textarea rows="5" class="form-control" placeholder="What do you want people to know about you?" required data-validation-required-message="Please tell us about yourself." v-model="child.about_me"></textarea>
+	    			<p class="help-block text-danger"></p>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="form-group floating-label-form-group controls">
+					<label>Favorite Color</label>
+					<input type="text" class="form-control" placeholder="What is your favorite color?" id="color" required data-validation-required-message="Please enter your favorite color." v-model="child.fav_color">
+					<p class="help-block text-danger"></p>
+				</div>
+			</div>
+			<h3>What would you like for christmas?</h3>
+			<div class="control-group">
+				<div class="form-group floating-label-form-group controls">
+					<label>Wishlist</label>
+					<input type="text" class="form-control" placeholder="Item 1" id="child_item_1" required data-validation-required-message="Please put at least one item on your wishlist." v-model="child.items[0].name">
+					<input type="text" class="form-control" placeholder="Item 2" id="child_item_2" v-model="child.items[1].name">
+					<input type="text" class="form-control" placeholder="Item 3" id="child_item_3" v-model="child.items[2].name">
+					<p class="help-block text-danger"></p>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="form-group floating-label-form-group controls">
+					<p>What is your shirt size?</p>
+					<input type="radio" name="shirt_size" value="XS" v-model="child.cloth_size">XS
+					<input type="radio" name="shirt_size" value="S" v-model="child.cloth_size">S
+					<input type="radio" name="shirt_size" value="M" v-model="child.cloth_size">M
+					<input type="radio" name="shirt_size" value="L" v-model="child.cloth_size">L
+					<input type="radio" name="shirt_size" value="XL" v-model="child.cloth_size">XL
+					<input type="radio" name="shirt_size" value="2XL" v-model="child.cloth_size">2XL
+					<p class="help-block text-danger"></p>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="form-group floating-label-form-group controls">
+					<label>Pant Size</label>
+					<input type="text" class="form-control" placeholder="What is your pant size? (Numerical)" id="pant_size" required data-validation-required-message="Please enter your pant size." v-model="child.pant_size">
+					<p class="help-block text-danger"></p>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="form-group floating-label-form-group controls">
+					<label>Shoe Size</label>
+					<input type="text" class="form-control" placeholder="What is your shoe size?" id="shoe_size" required data-validation-required-message="Please enter your shoe size."  v-model="child.shoes_size">
+					<p class="help-block text-danger"></p>
+				</div>
+			</div>
+			<div id="success"></div>
+			<div class="form-group">
+				<br>
+	  			<button type="submit" class="btn btn-primary" id="sendChildFormButton">Submit Form</button>
+			</div>
+		</form>
+	</div>
 </div>
-<div class="row" id="childrenInfo">
-  
-  <div class="col-sm-6">
-    <div class="row">[[child.name]] ([[child.age]][[child.sex]])</div>
-    <div class="row">Email: [[child.email]]</div>
-    <div class="row">Address: [[child.address]]</div>
-    <div class="row">Shirt Size: [[child.cloth_size]]</div>
-    <div class="row">Pant Size: [[child.pant_size]]</div>
-    <div class="row">Shoe Size: [[child.shoes_size]]</div>
-  </div>
+  {% endblock %}
 
-  <div class="col-sm-6"> <!-- change these rows to iterate over the array-->>
-    <div class="row">[[child.items[0].name]]: $[[child.items[0].amount]]</div>
-    <div class="row">[[child.items[1].name]]: $[[child.items[0].amount]]</div>
-	<div class="row">[[child.items[2].name]]: $[[child.items[0].amount]]</div>
-	
-    <div class="row">Total Price: [[getTotalGiftPrice()]]</div>2
-  </div>
-
-</div> 
-{% endblock %}
-
-{% block script %}
+  {% block script %}
   <script>
     var app = new Vue({
-      el: "#childrenInfo",
-      delimiters: ['[[', ']]'],
-      data: {
-        child: {
-          id: 0,
-          email: "",
-          name: "Joe Bob",
-          phone: "",
-          age: 7,
-          about_me: "",
-          address: "",
-          cloth_size: "",
-          sex: "M",
-          gender: "",
-          pant_size: "",
-          shoes_size: "",
-          fav_color: "",
-          items: [
-                {id:0, name:"bike", price: 12},
-                {id:1, name:"yoyo", price: 12},
-                {id:2, name:"doggie", price: 12}
-              ]
-        }
+        	el: "#childrenForm",
+        	delimiters: ['[[', ']]'],
+        	data: {
+				child: {
+					id: 0,
+					email: "",
+					name: "",
+					phone: "",
+					age: null,
+					about_me: "",
+					address: "",
+					cloth_size: "",
+					sex: "",
+					gender: "",
+					pant_size: "",
+					shoes_size: "",
+					fav_color: "",
+					items: [
+						{id:0, name:""},
+						{id:0, name:""},
+						{id:0, name:""}
+					]
+				}
 
-      },
-      methods: {
-          fetchData: function(){
-              this.$http.get('/test').then(response => {
-                  console.log(response.body);
-                  this.child =  response.body;
-              }, error => {
-                  console.log(error);
-              });
-          }
-      }
+        	},
+        methods: {
+            fetchData: function(){
+					this.$http.get('/api/1.0/children/<id>').then(response => {
+                    	console.log(response.body);
+                    	this.child =  response.body;
+                	}, error => {
+                    	console.log(error);
+                	});
+            	},
+	    	save: function(){
+				if(this.child.id == 0){
+					this.$http.post('/api/1.0/children', this.child).then(response => {
+						window.location.href = "/welcome_child"
+					}, error => {
+						console.log(error);
+					})
+				}
+				else {
+					this.$http.put('/api/1.0/children/' + this.child.id, this.child).then(response => {
+						window.location.href = "/welcome_child"
+					}, error => {
+						console.log(error);
+					})
+				}
+	    	}
+        },
+        mounted: function(){
+            //this.fetchData();
+        }
     });
   </script>
   {% endblock %}
