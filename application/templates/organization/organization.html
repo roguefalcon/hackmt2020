@@ -21,12 +21,13 @@
 		</thead>
 		<tbody>
 			<h2> Registered Children </h2>
-			//v-for child in children
-			<tr>
-				<th scope="row">child.name</th>
-				<td>child.age</td>
-				<td>child.sex</td>
-				<td>child.id</td>
+			<tr v-for="child in children">
+				<th scope="row">
+					<a class="btn btn-primary" :href="child.link"  role="button" style="width:150px">[[child.name]]</a>
+				</th>
+				<td>[[child.age]]</td>
+				<td>[[child.sex]]</td>
+				<td>[[child.id]]</td>
 			</tr>
 		</tbody>
 		</table>
@@ -45,14 +46,13 @@
 		</thead>
 		<tbody>
 			<h2> Registered Donors </h2>
-			//v-for donor in donors
-			<tr>
-				<th scope="row">donor.name</th>
-				<td>donor.email</td>
-				<td>donor.username</td>
-				<td>donor.password</td>
-				<td>donor.phone</td>
-				<td>donor.id</td>
+			<tr v-for="donor in donors">
+				<th scope="row">[[donor.name]]</th>
+				<td>[[donor.email]]</td>
+				<td>[[donor.username]]</td>
+				<td>[[donor.password]]</td>
+				<td>[[donor.phone]]</td>
+				<td>[[donor.id]]</td>
 			</tr>
 		</tbody>
 		</table>
@@ -75,6 +75,9 @@
 		fetchData: function(){
 				this.$http.get('/api/1.0/children').then(response => {
 					this.children = response.body
+					this.children.forEach(child => {
+						child.link = "/organization/children?childId=" + child.id
+						});
 					console.log(this.children)
 				}, error => {
 					console.log(error);
