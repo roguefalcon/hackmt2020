@@ -155,14 +155,14 @@
 	    	save: function(){
 				if(this.child.id == 0){
 					this.$http.post('/api/1.0/children', this.child).then(response => {
-						window.location.href = "/welcome"
+						window.location.href = "/welcome_child"
 					}, error => {
 						console.log(error);
 					})
 				}
 				else {
 					this.$http.put('/api/1.0/children/' + this.child.id, this.child).then(response => {
-						window.location.href = "/welcome"
+						window.location.href = "/welcome_child"
 					}, error => {
 						console.log(error);
 					})
