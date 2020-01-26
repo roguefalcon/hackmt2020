@@ -33,19 +33,20 @@ def child_read(id):
     return jsonify(data)
 # Update Single child record(Edit)======
 
-@main.app.route('/api/1.0/children/<item>, methods=['put'])
-def child_insert()
+@main.app.route('/api/1.0/children/items', methods=['put'])
+def child_item_update():
     childrenData = request.json
     # child input
     items = childrenData['items']
     
     for item in items:
-    g.c.excute('''
-    UPDATE children_items set name=?,amount=?
-    WHERE id = ?''',(item['name'],item['amount'], item['id])
-    )
-    g.conn.commit() 
-return jsonify({'success': True})
+    	g.c.execute('''
+    	UPDATE children_items set name=?,amount=?
+    	WHERE id = ?''',(item['name'],item['amount'], item['id'])
+    	)
+    	g.conn.commit() 
+
+    return jsonify({'success': True})
 
 @main.app.route('/api/1.0/children/<id>', methods=['put'])
 def child_edit(id):
