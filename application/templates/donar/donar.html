@@ -67,7 +67,7 @@
 			methods: {
 					send: function(){
 							this.$http.post('/api/1.0/donar', this.donar).then(response => {
-									window.location.href = "/donor/" + response.body.donar_id + "/child/"
+									window.location.href = "/donar/" + response.body.donar_id + "/children"
 							}, error => {
 									console.log(error);
 							})
