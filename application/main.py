@@ -6,9 +6,9 @@ app =Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/organizer')
-def organizer():
-    return render_template('organizer/organizer.html')
+@app.route('/organization')
+def organization():
+    return render_template('organization/organization.html')
 
 @app.route('/donar')
 def doner():
@@ -28,4 +28,4 @@ def contact():
 
 from application.APIs.children import children
 from application.APIs.donar import donar
-from application.APIs.organizer import organizer
+from application.APIs.organization import organization
