@@ -28,4 +28,5 @@ def contact():
 
 from application.APIs.children import children
 from application.APIs.donar import donar
+from application.APIs.donar import donar_associate
 from application.APIs.organization import organization

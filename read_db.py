@@ -37,6 +37,14 @@ donor = c.fetchall()
 
 for item  in donor:
     print(item)
+
+#Print Donar_sponsor_children
+print("==> donar_sponsor_children")
+c.execute('''SELECT * FROM donar_sponsor_children''')
+donar_sponsor_children = c.fetchall()
+
+for associations in donar_sponsor_children:
+    print(associations)
 # Print users =================================================================
 #print("==> Users")
 #c.execute('''SELECT * FROM users''')
