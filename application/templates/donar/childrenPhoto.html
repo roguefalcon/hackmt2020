@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block title %}Children Page{% endblock %}
+{% block content %}
+        <div id="app">
+            <div class="row">
+        <div class="col-4" v-for ="child in children ">
+            <div class="card  p-3" style="height: 630px;">
+              <img class="card-img-top" :src="[[picLink(child)]]"  alt="Card image" style="width:100%;">
+              <div class="card-body">
+                <h4 class="card-title">[[childInfo(child)]]</h4>
+                <a :href="[[sponsorLink(child)]]" class="btn btn-primary stretched-link">See Profile</a>
+              </div>
+            </div>
+        </div>
+          </div>
+        </div>
+{% endblock %}
+
+{% block script %}
+
+<script>
+ var vm =new Vue({
+    el: "#app",
+    delimiters: ['[[', ']]'],
+    data(){
+        return { children: []}
+    }
+  ,
+  methods: {
+    fetchData: function(){
+                this.$http.get('/api/1.0/children').then(response => {
+                    this.children =  response.body;
+                }, error => {
+                    console.log(error);
+                });
+  },
+    picLink: function(child){
+          return "/static/img/kids/" + child.id + ".jpg"
+      },
+    childInfo: function(child){
+        return child.name + '(' + child.age + ' '+ child.sex.charAt(0) + ')';
+    }, 
+    sponsorLink: function(child){
+        return window.location.pathname + '/' + child.id;
+        console.log(window.location.pathname);
+        console.log(child.id);
+    }
+  },
+  mounted() {
+    this.fetchData();
+  }
+})
+</script>
+{% endblock %}
