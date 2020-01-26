@@ -29,3 +29,35 @@ def donar_insert():
 
     g.conn.commit()
     return jsonify({'success': True, 'donar_id':rowid})
+
+
+
+@main.app.route('/api/1.0/donar/<id>', methods=['put'])
+def donar_edit(id):
+
+    donarData = request.json
+
+#donar input
+    email = donarData['email']
+    username = donarData['username']
+    password = donarData['password']
+    phone = donarData['phone']
+    name = donarData['name']
+
+    g.c.execute('''UPDATE donor set email=?,username=?,password=?,phone=?,name=? where id=?''', (email,username,password,phone,name,id))
+
+    g.conn.commit()
+    return jsonify({'success': True, 'donar_id': id})
+
+
+# Delete Single CHILD REECORD (Delete) ============================================
+
+@main.app.route('/api/1.0/donar/<id>', methods=['DELETE'])
+def donar_delete(id):
+    # DELETE A REC FROM DB
+    g.c.execute(''' DELETE FROM donor
+                    WHERE id=? LIMIT 1''', id)
+    g.conn.commit()
+
+    #Tell the user it worked
+    return jsonify({'success': True})
