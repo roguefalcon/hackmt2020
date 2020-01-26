@@ -1,10 +1,35 @@
 {% extends "layout.html" %}
-{% block title %}About Page{% endblock %}
+{% block title %}Organization Page{% endblock %}
 {% block content %}
  
 <div class="row">
   <div class="col-lg-8 col-md-10 mx-auto">
-    <h1> This Is Organizer Page </h1>
+    <h1> Organization Info </h1>
   </div>
 </div>
+<div class="row" id="childrenList">
+    <a class="nav-link" href="/organization/children?childId=1">child 1</a>
+</div> 
+<div class="row" id="donorList">
+
+</div> 
+
 {% endblock %}
+
+{% block script %}
+<script>
+  var childId = new URL(location.href).searchParams.get('childId')
+
+  var app = new Vue({
+    el: "#childrenList",
+    delimiters: ['[[', ']]']
+  })
+
+  var app = new Vue({
+    el: "#donorList",
+    delimiters: ['[[', ']]']
+  })
+  
+</script>
+{% endblock %}
+

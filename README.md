@@ -25,6 +25,4 @@ Run the following commands:
 Please run below command to set up database:
 Children Database:
 `python3 load_db.py` if you have error, please run this line again
-Donor Database:
-`python3 donor_register_db`
 `python3 rea_db.py`

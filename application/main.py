@@ -10,6 +10,14 @@ def index():
 def organization():
     return render_template('organization/organization.html')
 
+@app.route('/organization/children')
+def organizationchildren():
+    return render_template('organization/organizationchildren.html')
+
+@app.route('/organization/children')
+def organizationdonor():
+    return render_template('organization/organizationdonor.html')
+
 @app.route('/donar')
 def doner():
     return render_template('donar/donar.html')
@@ -32,4 +40,5 @@ def contact():
 
 from application.APIs.children import children
 from application.APIs.donar import donar
+from application.APIs.donar import donar_associate
 from application.APIs.organization import organization
