@@ -24,7 +24,13 @@ c.execute('''CREATE TABLE IF NOT EXISTS children
 c.execute('''CREATE TABLE IF NOT EXISTS children_items
             (id integer primary key, name text, amount integer,children_id integer not null, foreign key (children_id) references children(id))''')
 
+#Donor
+c.execute('''CREATE TABLE IF NOT EXISTS donor
+            (id integer primary key, email text, username text, password text, confirm_password text, phone text, name text)''')
 
+
+#Load into donor
+c.execute('''INSERT INTO donor (email, username, password, confirm_password, phone, name) VALUES (?, ?, ?, ?, ?, ?)''', ('email@email.com', 'username', 'pass', 'pass','615 111 6666','namefield'))
 # Let's load some data
 #c.execute('''INSERT INTO users VALUES (?, ?)''',
 #         ('asdf', bcrypt.hashpw(b'asdf', bcrypt.gensalt())))
