@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+{% block title %}Donar Information {% endblock %}
+{% block content %}
+ 
+<div class="row">
+	<div class="col-lg-8 col-md-10 mx-auto">
+		<h3><u>Donar Information.</u></h3>
+		<form name="sentMessage" id="donarForm" novalidate @submit.prevent="save">
+			<div class="control-group">
+	  			<div class="form-group floating-label-form-group controls">
+	    			<label>Name</label>
+	    			<input type="text" class="form-control" placeholder="Full Name" id="name" required data-validation-required-message="Please enter your name." v-model="donar.name">
+	    			<p class="help-block text-danger"></p>
+	  			</div>
+			</div>
+			<div class="control-group">
+ 	 			<div class="form-group floating-label-form-group controls">
+   	 				<label>Email</label>
+	 				<input type="email" class="form-control" placeholder="Email Address" id="email" required data-validation-required-message="Please enter your email address." v-model="donar.email">
+	 				<p class="help-block text-danger"></p>
+  				</div>
+			</div>
+			<div class="control-group">
+				<div class="form-group floating-label-form-group controls">
+					<label>Phone</label>
+					<input type="tel" class="form-control" placeholder="Phone Number" id="phone" required data-validation-required-message="Please enter your phone number." v-model="donar.phone">
+					<p class="help-block text-danger"></p>
+				</div>
+			</div>
+			<div id="success"></div>
+			<div class="row">
+				<div class="col-lg-8 col-md-10 mx-auto">
+				  <h3><u>Sponsored Child</u></h3>
+				  <div class="control-group" v-for="child in donar.children_info">
+					  <input type="checkbox" name="name" value="Kate" checked disabled /> [[child.name]] ([[child.age]] [[child.sex]]) [[child.total]]
+				  </div>
+			  	</hr>
+				<div class="form-group">
+					<br>
+					<button type="submit" class="btn btn-primary" id="sendChildFormButton">Submit Form</button>
+				</div>
+			  </div>
+		  </div>
+		</form>
+	</div>
+</div>
+
+<script>
+    var app = new Vue({
+        	el: "#donarForm",
+        	delimiters: ['[[', ']]'],
+        	data: {
+				donar: {
+					id: 0,
+					email: "",
+					name: "",
+					phone: "",
+					children_info:[{
+						name : "",
+						id : 0,
+						age: 0,
+						sex : "",
+						total : 0
+					}]
+				}
+        	},
+        methods: {
+            fetchData: function(){
+					this.$http.get('/api/1.0/donar/<id>/children').then(response => {
+                    	console.log(response.body);
+                    	this.donar =  response.body;
+                	}, error => {
+                    	console.log(error);
+                	});
+            	},
+	    	save: function(){
+				if(this.donar.id == 0){
+					this.$http.post('/api/1.0/donar', this.donar).then(response => {
+						window.location.href = "/organization"
+					}, error => {
+						console.log(error);
+					})
+				}
+				else {
+					this.$http.put('/api/1.0/DONAR/' + this.donar.id, this.id).then(response => {
+						window.location.href = "/organization"
+					}, error => {
+						console.log(error);
+					})
+				}
+	    	}
+        },
+        mounted: function(){
+            //this.fetchData();
+        }
+    });
+  </script>
+{% endblock %}

@@ -19,8 +19,12 @@ def organizationdonor():
     return render_template('organization/organizationdonor.html')
 
 @app.route('/donar')
-def doner():
+def donar():
     return render_template('donar/donar.html')
+
+@app.route('/donar/<id>')
+def donarInformation(id):
+    return render_template('donar/donarInformation.html')
 
 @app.route('/welcome_child')
 def welcome():
