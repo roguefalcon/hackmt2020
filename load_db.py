@@ -28,6 +28,10 @@ c.execute('''CREATE TABLE IF NOT EXISTS children_items
 c.execute('''CREATE TABLE IF NOT EXISTS donor
             (id integer primary key, email text, username text, password text, confirm_password text, phone text, name text)''')
 
+#Donar_sponsor_children
+c.execute('''CREATE TABLE IF NOT EXISTS donar_sponsor_children
+            (id integer primary key, donar_id integer not null, children_id integer not null, foreign key (children_id) references children(id), foreign key (donar_id) references donar(id))''')
+
 
 #Load into donor
 c.execute('''INSERT INTO donor (email, username, password, confirm_password, phone, name) VALUES (?, ?, ?, ?, ?, ?)''', ('email@email.com', 'username', 'pass', 'pass','615 111 6666','namefield'))
@@ -39,6 +43,9 @@ c.execute('''INSERT INTO children (email, name, age, about_me, address, cloth_si
 
 c.executemany('''INSERT INTO children_items (name, amount, children_id) VALUES(?, ?, ?)''',
           [('LEGO', 20, 1),('GIFT', 50, 1),('CANDY', 5, 1)])
+
+c.execute('''INSERT INTO donar_sponsor_children (donar_id, children_id) VALUES (?,?)''',
+          (1,1))
 
 
 conn.commit()
